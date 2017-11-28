@@ -50,17 +50,17 @@ exports.cssLoaders = function (options) {
     css: generateLoaders(),
     postcss: generateLoaders(),
     less: generateLoaders('less'),
-    sass: generateLoaders('sass', { indentedSyntax: true }).concat(
+    scss: generateLoaders('sass').concat(
       {
         loader: 'sass-resources-loader',
         options: {
           resources: [
-            path.resolve(__dirname, '../src/assets/sass/_global.sass')
+            path.resolve(__dirname, '../src/assets/scss/_global.scss')
           ]
         }
       }
     ),
-    scss: generateLoaders('sass'),
+    sass: generateLoaders('sass', { indentedSyntax: true }),
     stylus: generateLoaders('stylus'),
     styl: generateLoaders('stylus')
   }
