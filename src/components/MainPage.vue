@@ -1,9 +1,7 @@
 <template>
   <div class="main-page">
     <div class="container">
-      <div class="logo">
-        <h1>Semantic Video Search</h1>
-      </div>
+      <h1 class="logo">Semantic Video Search</h1>
       <div class="ui segment">
         <!-- TODO: SearchBox component will comes here -->
       </div>
@@ -35,7 +33,7 @@ $box-shadow: #2d2d34;
     align-items: center;
     justify-content: center;
 
-    .logo h1 {
+    .logo {
       font-size: 50px;
       color: $logo-text;
     }
