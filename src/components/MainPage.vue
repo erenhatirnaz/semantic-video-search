@@ -44,9 +44,6 @@ $box-shadow: #2d2d34;
       /* TODO: These properties sets after search box component */
       // width: 60%;
       // height: 100px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
     }
   }
 }
