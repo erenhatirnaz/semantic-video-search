@@ -68,3 +68,7 @@ typings/
 
 ### Vue
 /dist/
+
+# e2e tests
+/test/e2e/reports/
+selenium-debug.log
