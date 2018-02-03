@@ -9,6 +9,15 @@ import './bootstrap'
 
 Vue.config.productionTip = false
 
+const eventBus = new Vue()
+Object.defineProperties(Vue.prototype, {
+  $bus: {
+    get () {
+      return eventBus
+    }
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
