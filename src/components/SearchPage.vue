@@ -12,7 +12,7 @@
     </div>
     <div class="content">
       <div class="options">
-        <!-- TODO: Layout mode switch -->
+        <layout-mode-switch></layout-mode-switch>
       </div>
       <div class="results">
         <!-- TODO: Search results -->
@@ -22,8 +22,11 @@
 </template>
 
 <script>
+import LayoutModeSwitch from '@/components/LayoutModeSwitch'
+
 export default {
-  name: 'SearchPage'
+  name: 'SearchPage',
+  components: { LayoutModeSwitch }
 }
 </script>
 
@@ -54,6 +57,10 @@ $sidebar: #197bbd;
 
     .options {
       height: 67px;
+      display: flex;
+      justify-content: flex-end;
+      align-items: flex-end;
+      padding-right: 15px;
     }
 
     .results {
