@@ -8,6 +8,7 @@
         </router-link>
       </div>
       <div class="sidebar-content">
+        <search-box></search-box>
       </div>
     </div>
     <div class="content">
@@ -22,11 +23,12 @@
 </template>
 
 <script>
+import SearchBox from '@/components/SearchBox'
 import LayoutModeSwitch from '@/components/LayoutModeSwitch'
 
 export default {
   name: 'SearchPage',
-  components: { LayoutModeSwitch }
+  components: { LayoutModeSwitch, SearchBox }
 }
 </script>
 
@@ -47,6 +49,10 @@ $sidebar: #197bbd;
       display: flex;
       justify-content: flex-end;
       align-items: center;
+    }
+
+    &-content {
+      margin-top: 15px;
     }
   }
 
