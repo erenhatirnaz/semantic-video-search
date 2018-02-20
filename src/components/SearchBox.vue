@@ -74,6 +74,15 @@
 <script>
 export default {
   name: 'search-box',
+  props: {
+    mode: {
+      type: String,
+      default: 'full',
+      validator: (value) => {
+        return (value === 'full' || value === 'sidebar')
+      }
+    }
+  },
   data () {
     return {
       query: {
@@ -97,6 +106,18 @@ export default {
         crowd_movement: 'empty'
       }
     })
+
+    if (this.mode === 'sidebar' &&
+        Object.keys(this.$query).includes('camera_names')) {
+      this.query = this.$query
+
+      const queryFields = Object.keys(this.query).slice(0, 5)
+      const values = Object.values(this.query).slice(0, 5)
+
+      queryFields.forEach((field, index) => {
+        $(`[name='${field}']`).dropdown('set selected', values[index])
+      })
+    }
   },
   watch: {
     query: {
@@ -124,6 +145,7 @@ export default {
 
     search () {
       if ($('.ui.form').form('validate form')) {
+        if (this.mode === 'full') { this.$query = this.query }
         this.$router.push('/search')
         // TODO: Searching Service
       }

@@ -8,7 +8,7 @@
         </router-link>
       </div>
       <div class="sidebar-content">
-        <search-box></search-box>
+        <search-box mode="sidebar"></search-box>
       </div>
     </div>
     <div class="content">
