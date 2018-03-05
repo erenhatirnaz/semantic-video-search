@@ -5,5 +5,8 @@ module.exports = {
   globals: {
     expect: true,
     sinon: true
+  },
+  rules: {
+    "no-unused-expressions": 0
   }
 }
