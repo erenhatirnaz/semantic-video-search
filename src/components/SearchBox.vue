@@ -5,15 +5,17 @@
       <div class="field">
         <label>Camera Name(s)</label>
         <select class="ui dropdown" name="camera_names" multiple v-model="query.camera_names">
-          <option value="umnOutdoor1">UMNOutdoor1</option>
-          <option value="umnOutdoor2">UMNOutdoor2</option>
-          <option value="umnOutdoor3">UMNOutdoor3</option>
+          <option v-for="camera_name in available_camera_names" :key="camera_name" :value="camera_name">
+            {{ camera_name }}
+          </option>
         </select>
       </div>
       <div class="field">
         <label>Dataset(s)</label>
         <select class="ui dropdown" name="datasets" multiple v-model="query.datasets">
-          <option value="umn">UMN</option>
+          <option v-for="dataset in available_datasets" :key="dataset" :value="dataset">
+            {{ dataset }}
+          </option>
         </select>
       </div>
       <div class="field">
@@ -72,6 +74,8 @@
 </template>
 
 <script>
+import VideosService from '@/services/videos_service'
+
 export default {
   name: 'search-box',
   props: {
@@ -85,6 +89,8 @@ export default {
   },
   data () {
     return {
+      available_camera_names: [],
+      available_datasets: [],
       query: {
         camera_names: [],
         datasets: [],
@@ -94,6 +100,11 @@ export default {
         duration: { start: NaN, end: NaN }
       }
     }
+  },
+  created () {
+    const videosService = new VideosService()
+    this.available_camera_names = videosService.getAllCameraNames()
+    this.available_datasets = videosService.getAllDatasets()
   },
   mounted () {
     $('.ui.dropdown').dropdown({ duration: 100 })
