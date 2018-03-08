@@ -4,38 +4,38 @@
       <div class="ui error message"></div>
       <div class="field">
         <label>Camera Name(s)</label>
-        <select class="ui dropdown" name="camera_names" multiple v-model="query.camera_names">
-          <option v-for="camera_name in available_camera_names" :key="camera_name" :value="camera_name">
-            {{ camera_name }}
+        <select class="ui dropdown" name="cameraNames" multiple v-model="query.cameraNames">
+          <option v-for="cameraName in availableCameraNames" :key="cameraName" :value="cameraName">
+            {{ cameraName }}
           </option>
         </select>
       </div>
       <div class="field">
         <label>Dataset(s)</label>
         <select class="ui dropdown" name="datasets" multiple v-model="query.datasets">
-          <option v-for="dataset in available_datasets" :key="dataset" :value="dataset">
+          <option v-for="dataset in availableDatasets" :key="dataset" :value="dataset">
             {{ dataset }}
           </option>
         </select>
       </div>
       <div class="field">
         <label>Event Classification</label>
-        <select class="ui dropdown" name="event_classification" v-model="query.event_classification">
+        <select class="ui dropdown" name="eventClassification" v-model="query.eventClassification">
           <option value="normal">Normal</option>
           <option value="abnormal">Abnormal</option>
         </select>
       </div>
       <div class="field">
         <label>Crowd Destiny</label>
-        <select class="ui dropdown" name="crowd_destiny" v-model="query.crowd_destiny">
-          <option value="not_crowded">Not Crowded</option>
+        <select class="ui dropdown" name="crowdDestiny" v-model="query.crowdDestiny">
+          <option value="notCrowded">Not Crowded</option>
           <option value="crowded">Crowded</option>
-          <option value="very_crowded">Very Crowded</option>
+          <option value="veryCrowded">Very Crowded</option>
         </select>
       </div>
       <div class="field">
         <label>Crowd Movement</label>
-        <select class="ui dropdown" name="crowd_movement" v-model="query.crowd_movement">
+        <select class="ui dropdown" name="crowdMovement" v-model="query.crowdMovement">
           <option value="walking">Walking</option>
           <option value="running">Running</option>
           <option value="stationary">Stationary</option>
@@ -89,37 +89,37 @@ export default {
   },
   data () {
     return {
-      available_camera_names: [],
-      available_datasets: [],
+      availableCameraNames: [],
+      availableDatasets: [],
       query: {
-        camera_names: [],
+        cameraNames: [],
         datasets: [],
-        event_classification: '',
-        crowd_destiny: '',
-        crowd_movement: '',
+        eventClassification: '',
+        crowdDestiny: '',
+        crowdMovement: '',
         duration: { start: NaN, end: NaN }
       }
     }
   },
   created () {
     const videosService = new VideosService()
-    this.available_camera_names = videosService.getAllCameraNames()
-    this.available_datasets = videosService.getAllDatasets()
+    this.availableCameraNames = videosService.getAllCameraNames()
+    this.availableDatasets = videosService.getAllDatasets()
   },
   mounted () {
     $('.ui.dropdown').dropdown({ duration: 100 })
     $('.ui.form').form({
       fields: {
-        camera_names: 'minCount[1]',
+        cameraNames: 'minCount[1]',
         datasets: 'minCount[1]',
-        event_classification: 'empty',
-        crowd_destiny: 'empty',
-        crowd_movement: 'empty'
+        eventClassification: 'empty',
+        crowdDestiny: 'empty',
+        crowdMovement: 'empty'
       }
     })
 
     if (this.mode === 'sidebar' &&
-        Object.keys(this.$query).includes('camera_names')) {
+        Object.keys(this.$query).includes('cameraNames')) {
       this.query = this.$query
 
       const queryFields = Object.keys(this.query).slice(0, 5)
