@@ -26,8 +26,8 @@
         </select>
       </div>
       <div class="field">
-        <label>Crowd Destiny</label>
-        <select class="ui dropdown" name="crowdDestiny" v-model="query.crowdDestiny">
+        <label>Crowd Density</label>
+        <select class="ui dropdown" name="crowdDensity" v-model="query.crowdDensity">
           <option value="notCrowded">Not Crowded</option>
           <option value="crowded">Crowded</option>
           <option value="veryCrowded">Very Crowded</option>
@@ -95,7 +95,7 @@ export default {
         cameraNames: [],
         datasets: [],
         eventClassification: '',
-        crowdDestiny: '',
+        crowdDensity: '',
         crowdMovement: '',
         duration: { start: NaN, end: NaN }
       }
@@ -113,7 +113,7 @@ export default {
         cameraNames: 'minCount[1]',
         datasets: 'minCount[1]',
         eventClassification: 'empty',
-        crowdDestiny: 'empty',
+        crowdDensity: 'empty',
         crowdMovement: 'empty'
       }
     })
