@@ -56,7 +56,7 @@ export default class QueryService {
     const query = prefixes + sparqlQuery
     if (this.debug) console.log(query)
 
-    return encodeURI(query)
+    return encodeURIComponent(query)
   }
 
   /**

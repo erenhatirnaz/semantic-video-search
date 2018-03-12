@@ -38,9 +38,9 @@ describe('QueryService', () => {
 
       expect(preparedQuery).to.be.an('String')
       expectedPrefixes.forEach((expectedPrefix) => {
-        expect(preparedQuery).to.include(encodeURI(exampleQuery))
+        expect(preparedQuery).to.include(encodeURIComponent(exampleQuery))
       })
-      expect(preparedQuery).to.not.include(encodeURI('PREFIX ninsuna: <http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#>'))
+      expect(preparedQuery).to.not.include(encodeURIComponent('PREFIX ninsuna: <http://multimedialab.elis.ugent.be/organon/ontologies/ninsuna#>'))
     })
 
     it('should throw an error when query is empty', () => {
