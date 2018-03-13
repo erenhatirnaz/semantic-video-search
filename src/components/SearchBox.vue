@@ -75,6 +75,7 @@
 
 <script>
 import VideosService from '@/services/videos_service'
+import SearchService from '@/services/search_service'
 
 export default {
   name: 'search-box',
@@ -157,8 +158,12 @@ export default {
     search () {
       if ($('.ui.form').form('validate form')) {
         if (this.mode === 'full') { this.$query = this.query }
+
         this.$router.push('/search')
-        // TODO: Searching Service
+
+        const searchService = new SearchService()
+        const results = searchService.getResults(this.query)
+        this.$bus.$emit('search-results', results)
       }
     }
   }
