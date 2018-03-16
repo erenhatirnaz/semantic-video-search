@@ -129,6 +129,11 @@ export default {
       queryFields.forEach((field, index) => {
         $(`[name='${field}']`).dropdown('set selected', values[index])
       })
+
+      // NOTE: This is definitely not a good solution
+      setTimeout(() => {
+        this.search()
+      }, 100)
     }
   },
   watch: {
