@@ -3,15 +3,18 @@
     <div class="container">
       <h1 class="logo">Semantic Video Search</h1>
       <div class="ui segment">
-        <!-- TODO: SearchBox component will comes here -->
+        <search-box></search-box>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import SearchBox from '@/components/SearchBox'
+
 export default {
-  name: 'MainPage'
+  name: 'MainPage',
+  components: { SearchBox }
 }
 </script>
 
@@ -41,9 +44,9 @@ $box-shadow: #2d2d34;
     .ui.segment {
       background-color: $segment;
       @include box-shadow(0px 0px 28px -8px $box-shadow);
-      /* TODO: These properties sets after search box component */
-      // width: 60%;
-      // height: 100px;
+      width: 40%;
+      padding-right: 50px;
+      padding-left: 50px;
     }
   }
 }

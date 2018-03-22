@@ -10,10 +10,21 @@ import './bootstrap'
 Vue.config.productionTip = false
 
 const eventBus = new Vue()
+let query = {}
+
 Object.defineProperties(Vue.prototype, {
   $bus: {
     get () {
       return eventBus
+    }
+  },
+  $query: {
+    get () {
+      return query
+    },
+
+    set (value) {
+      query = value
     }
   }
 })
