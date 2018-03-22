@@ -11,6 +11,9 @@
         <search-box mode="sidebar"></search-box>
       </div>
     </div>
+    <div v-show="isLoading" class="ui active dimmer">
+      <div class="ui text loader">Searching...</div>
+    </div>
     <div class="content">
       <div class="options">
         <layout-mode-switch></layout-mode-switch>
@@ -28,7 +31,19 @@ import LayoutModeSwitch from '@/components/LayoutModeSwitch'
 
 export default {
   name: 'SearchPage',
-  components: { LayoutModeSwitch, SearchBox }
+  components: { LayoutModeSwitch, SearchBox },
+  data () {
+    return {
+      isLoading: false
+    }
+  },
+  created () {
+    this.$bus.$on('search-results', () => {
+      setTimeout(() => {
+        this.isLoading = false
+      }, 1000)
+    })
+  }
 }
 </script>
 

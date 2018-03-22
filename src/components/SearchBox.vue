@@ -166,6 +166,8 @@ export default {
 
         this.$router.push('/search')
 
+        this.$parent.$data.isLoading = true
+
         const searchService = new SearchService()
         const results = searchService.getResults(this.query)
         this.$bus.$emit('search-results', results)
