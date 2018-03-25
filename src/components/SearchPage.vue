@@ -15,7 +15,11 @@
       <div class="ui text loader">Searching...</div>
     </div>
     <div class="content">
-      <div class="options">
+      <div class="options" v-if="results.length > 0">
+        <div class="ui big green label">
+          <i class="video icon"></i>
+          {{ results.length }} search result(s) found!
+        </div>
         <layout-mode-switch></layout-mode-switch>
       </div>
       <div class="results">
@@ -34,13 +38,15 @@ export default {
   components: { LayoutModeSwitch, SearchBox },
   data () {
     return {
-      isLoading: false
+      isLoading: false,
+      results: []
     }
   },
   created () {
-    this.$bus.$on('search-results', () => {
+    this.$bus.$on('search-results', (results) => {
       setTimeout(() => {
         this.isLoading = false
+        this.results = results
       }, 1000)
     })
   }
@@ -79,9 +85,10 @@ $sidebar: #197bbd;
     .options {
       height: 67px;
       display: flex;
-      justify-content: flex-end;
-      align-items: flex-end;
+      justify-content: space-between;
+      align-items: center;
       padding-right: 15px;
+      padding-left: 15px;
     }
 
     .results {
