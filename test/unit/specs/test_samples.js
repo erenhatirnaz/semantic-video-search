@@ -16,8 +16,8 @@ export default [
         'VALUES ?crowdMovement { cbo:CrowdRunning }'
       ],
       notIncludes: [
-        '?segment_duration >=',
-        '?segment_duration <='
+        '?segmentDuration >=',
+        '?segmentDuration <='
       ]
     }
   },
@@ -32,12 +32,12 @@ export default [
     },
     expectations: {
       includes: [
-        '( ?segment_duration >= 6 )'
+        '( ?segmentDuration >= 6 )'
       ],
       notIncludes: [
         '?cameraName =',
         '?datasetName =',
-        '?segment_duration <=',
+        '?segmentDuration <=',
         '(  ) && (  )'
       ]
     }
@@ -53,12 +53,12 @@ export default [
     },
     expectations: {
       includes: [
-        '( ?segment_duration <= 10.1 )'
+        '( ?segmentDuration <= 10.1 )'
       ],
       notIncludes: [
         '?cameraName =',
         '?datasetName =',
-        '?segment_duration >=',
+        '?segmentDuration >=',
         '(  ) && (  )'
       ]
     }
@@ -74,7 +74,7 @@ export default [
     },
     expectations: {
       includes: [
-        '( ?segment_duration >= 6.1 && ?segment_duration <= 10.5 )'
+        '( ?segmentDuration >= 6.1 && ?segmentDuration <= 10.5 )'
       ],
       notIncludes: [
         '?cameraName =',
@@ -101,8 +101,8 @@ export default [
       notIncludes: [
         '?cameraName =',
         '?datasetName =',
-        '?segment_duration >=',
-        '?segment_duration <='
+        '?segmentDuration >=',
+        '?segmentDuration <='
       ]
     }
   }
