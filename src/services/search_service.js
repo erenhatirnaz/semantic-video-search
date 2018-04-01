@@ -69,10 +69,10 @@ export default class SearchService extends QueryService {
 
     let durationFilters = []
     if (!isNaN(duration.start)) {
-      durationFilters.push(`?segment_duration >= ${duration.start}`)
+      durationFilters.push(`?segmentDuration >= ${duration.start}`)
     }
     if (!isNaN(duration.end)) {
-      durationFilters.push(`?segment_duration <= ${duration.end}`)
+      durationFilters.push(`?segmentDuration <= ${duration.end}`)
     }
     if (durationFilters.length > 0) {
       filters.push(`( ${durationFilters.join(' && ')} )`)
