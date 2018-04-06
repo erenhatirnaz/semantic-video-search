@@ -1,6 +1,6 @@
 <template>
   <div class="search-results">
-    <div class="no-videos-found" v-if="!hasResults">
+    <div class="no-videos-found" v v-if="noResults">
       <div class="ui center aligned segment">
         <i class="huge icons">
           <i class="red video icon"></i>
@@ -9,7 +9,7 @@
         <h2>No videos found!</h2>
       </div>
     </div>
-    <div class="results-list" v-if="hasResults">
+    <div class="results-list" v-else>
       <ul>
         <!-- TODO: Result item -->
       </ul>
@@ -37,8 +37,8 @@ export default {
     })
   },
   computed: {
-    hasResults () {
-      return (this.results.length > 0)
+    noResults () {
+      return !(this.results.length > 0)
     }
   }
 }
