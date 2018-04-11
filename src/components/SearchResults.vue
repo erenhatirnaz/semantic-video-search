@@ -1,6 +1,6 @@
 <template>
   <div class="search-results">
-    <div class="no-videos-found" v v-if="noResults">
+    <div class="no-videos-found" v-if="noResults">
       <div class="ui center aligned segment">
         <i class="huge icons">
           <i class="red video icon"></i>
@@ -38,7 +38,7 @@ export default {
   },
   computed: {
     noResults () {
-      return !(this.results.length > 0)
+      return this.results.length === 0
     }
   }
 }
