@@ -14,9 +14,11 @@ export default class SearchService extends QueryService {
    */
   generateSearchQuery ({ cameraNames, datasets, eventClassification, crowdDensity, crowdMovement, duration }) {
     const selects = [
+      '?video',
       '?cameraName',
       '?datasetName',
       '?videoDuration',
+      '?segment',
       '?segmentDuration',
       '?densityCategory ',
       '?crowdMovement ',
