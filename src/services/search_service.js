@@ -80,7 +80,7 @@ export default class SearchService extends QueryService {
 
     let values = []
     values.push(`VALUES ?eventClassification { ${constants[eventClassification]} }`)
-    values.push(`VALUES ?crowdDensity { ${constants[crowdDensity]} }`)
+    values.push(`VALUES ?densityCategory { ${constants[crowdDensity]} }`)
     values.push(`VALUES ?crowdMovement { ${constants[crowdMovement]} }`)
 
     const filtersInline = (filters.length > 0)
