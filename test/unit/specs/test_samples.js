@@ -12,7 +12,7 @@ export default [
       includes: [
         'FILTER (( ?cameraName = "UMNOutdoor1" || ?cameraName = "UMNIndoor1" ) && ( ?datasetName = "UMN" ))',
         'VALUES ?eventClassification { cbo:CrowdAlert }',
-        'VALUES ?crowdDensity { cbo:Crowded }',
+        'VALUES ?densityCategory { cbo:Crowded }',
         'VALUES ?crowdMovement { cbo:CrowdRunning }'
       ],
       notIncludes: [
@@ -95,7 +95,7 @@ export default [
     expectations: {
       includes: [
         'VALUES ?eventClassification { cbo:CrowdAlert }',
-        'VALUES ?crowdDensity { cbo:Crowded }',
+        'VALUES ?densityCategory { cbo:Crowded }',
         'VALUES ?crowdMovement { cbo:CrowdRunning }'
       ],
       notIncludes: [

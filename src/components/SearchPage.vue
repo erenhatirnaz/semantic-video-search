@@ -23,7 +23,7 @@
         <layout-mode-switch></layout-mode-switch>
       </div>
       <div class="results">
-        <!-- TODO: Search results -->
+        <search-results :results="results"></search-results>
       </div>
     </div>
   </div>
@@ -32,10 +32,11 @@
 <script>
 import SearchBox from '@/components/SearchBox'
 import LayoutModeSwitch from '@/components/LayoutModeSwitch'
+import SearchResults from '@/components/SearchResults'
 
 export default {
   name: 'SearchPage',
-  components: { LayoutModeSwitch, SearchBox },
+  components: { LayoutModeSwitch, SearchBox, SearchResults },
   data () {
     return {
       isLoading: false,
@@ -93,6 +94,7 @@ $sidebar: #197bbd;
 
     .results {
       height: 100%;
+      overflow-y: auto;
     }
   }
 }

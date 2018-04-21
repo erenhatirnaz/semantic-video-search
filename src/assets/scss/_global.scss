@@ -1,1 +1,7 @@
 @import '~semantic-ui-css/semantic.css';
+
+@keyframes blink-animation {
+  to {
+    visibility: hidden;
+  }
+}
