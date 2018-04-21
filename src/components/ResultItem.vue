@@ -1,5 +1,5 @@
 <template>
-  <div class="result-item" :class="layoutModeClass" @mouseover="playVideo" @mouseout="stopVideo">
+  <div class="result-item" :class="layoutModeClass" @mouseover="playVideo" @mouseout="stopVideo" @click="navigateVideoDetails">
     <div class="first-side">
       <div class="summary-video">
         <video :src="summaryVideoSource" disabled=true @ended="replayVideo"></video>
@@ -138,6 +138,9 @@ export default {
       let video = $(this.$el).find('video')[0]
       video.pause()
       video.currentTime = 0.0
+    },
+    navigateVideoDetails () {
+      this.$bus.$emit('search-details', this.result)
     },
     replayVideo () {
       let video = $(this.$el).find('video')[0]
