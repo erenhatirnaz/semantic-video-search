@@ -1,5 +1,5 @@
 <template>
-  <div class="result-item" :class="layoutModeClass" @mouseover="playVideo" @mouseout="stopVideo" @click="navigateVideoDetails">
+  <div class="result-item" @mouseover="playVideo" @mouseout="stopVideo" @click="navigateVideoDetails">
     <div class="first-side">
       <div class="summary-video">
         <video :src="summaryVideoSource" disabled=true @ended="replayVideo"></video>
@@ -69,21 +69,7 @@ export default {
       required: true
     }
   },
-  data () {
-    return {
-      layoutMode: 'List'
-    }
-  },
-  created () {
-    this.$bus.$on('layout-mode-switched', (newLayoutMode) => {
-      this.layoutMode = newLayoutMode
-    })
-  },
   computed: {
-    layoutModeClass () {
-      return (this.layoutMode === 'List' ? 'list-type' : 'block-type')
-    },
-
     summaryVideoSource () {
       const fileName = this.result.segment.value.split('#')[1]
 
