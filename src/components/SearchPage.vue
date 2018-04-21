@@ -11,7 +11,7 @@
         <search-box mode="sidebar"></search-box>
       </div>
     </div>
-    <div v-show="isLoading" class="ui active dimmer">
+    <div v-if="isLoading" class="ui active dimmer">
       <div class="ui text loader">Searching...</div>
     </div>
     <div class="content">
