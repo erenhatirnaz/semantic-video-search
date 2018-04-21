@@ -9,17 +9,21 @@
         <h2>No videos found!</h2>
       </div>
     </div>
-    <div class="results-list" v-else>
+    <div class="results-list" :class="layoutModeClass" v-else>
       <ul>
-        <!-- TODO: Result item -->
+        <li is="result-item" v-for="result in results" :result="result" :key="result.segment.value">
+        </li>
       </ul>
     </div>
   </div>
 </template>
 
 <script>
+import ResultItem from './ResultItem'
+
 export default {
   name: 'SearchResults',
+  components: { ResultItem },
   props: {
     results: {
       type: Array,
@@ -39,6 +43,9 @@ export default {
   computed: {
     noResults () {
       return this.results.length === 0
+    },
+    layoutModeClass () {
+      return (this.layoutMode === 'List' ? 'list-type' : 'block-type')
     }
   }
 }
@@ -54,6 +61,34 @@ export default {
     width: 100%;
     justify-content: center;
     align-items: center;
+  }
+
+  .results-list > ul {
+    display: flex;
+    width: 100%;
+
+    .result-item {
+      margin-bottom: 15px;
+    }
+  }
+
+  .list-type {
+    width: calc(100% - 20px);
+
+    ul {
+      flex-direction: column;
+    }
+  }
+
+  .block-type {
+    ul {
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      .result-item {
+        margin-right: 15px;
+      }
+    }
   }
 }
 </style>

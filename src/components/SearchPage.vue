@@ -94,6 +94,7 @@ $sidebar: #197bbd;
 
     .results {
       height: 100%;
+      overflow-y: auto;
     }
   }
 }
