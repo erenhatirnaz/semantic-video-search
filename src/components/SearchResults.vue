@@ -11,7 +11,7 @@
     </div>
     <div class="results-list" :class="layoutModeClass" v-else>
       <ul>
-        <li is="result-item" v-for="result in results" :result="result" :key="result.segment.value">
+        <li is="result-item" v-for="result in results" :result="result" :class="layoutModeClass" :key="result.segment.value">
         </li>
       </ul>
     </div>
