@@ -37,12 +37,31 @@
       </div>
     </div>
     <div class="charts">
-      <!-- TODO: pie charts -->
+      <div class="video-statistic">
+        <div class="panel-title">
+          <h2 class="ui dividing header">Video Statistic [{{ video.video.value.split('#')[1] }}] </h2>
+        </div>
+        <div class="chart">
+          <canvas id="videoPieChart"></canvas>
+        </div>
+      </div>
+      <div class="camera-statistic">
+        <div class="panel-title">
+          <h2 class="ui dividing header">Camera Statistic [{{ video.cameraName.value }}] </h2>
+        </div>
+        <div class="chart">
+          <canvas id="cameraPieChart"></canvas>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
+import chart from 'chart.js'
+
+import StatisticService from '@/services/statistic_service'
+
 export default {
   name: 'VideoDetails',
   props: {
@@ -56,6 +75,43 @@ export default {
 
       return `static/videos/${fileName}.mp4`
     }
+  },
+  mounted () {
+    const statService = new StatisticService()
+    statService.getVideoStatistics(this.video).then((stats) => {
+      stats.normal = parseFloat(stats.normal.toFixed(2))
+      stats.abnormal = parseFloat(stats.abnormal.toFixed(2))
+      const videoPieChart = $(this.$el).find('#videoPieChart')[0].getContext('2d')
+      // eslint-disable-next-line
+      new chart(videoPieChart, {
+        type: 'pie',
+        data: {
+          labels: [ 'Normal', 'Abnormal' ],
+          datasets: [{
+            data: [ stats.normal, stats.abnormal ],
+            backgroundColor: [ '#197bbd', '#21ba45' ],
+            borderWith: 2
+          }]
+        }
+      })
+    })
+    statService.getCameraStatistics(this.video.cameraName.value).then((stats) => {
+      stats.normal = parseFloat(stats.normal.toFixed(2))
+      stats.abnormal = parseFloat(stats.abnormal.toFixed(2))
+      const videoPieChart = $(this.$el).find('#cameraPieChart')[0].getContext('2d')
+      // eslint-disable-next-line
+      new chart(videoPieChart, {
+        type: 'pie',
+        data: {
+          labels: [ 'Normal', 'Abnormal' ],
+          datasets: [{
+            data: [ stats.normal, stats.abnormal ],
+            backgroundColor: [ '#197bbd', '#21ba45' ],
+            borderWith: 2
+          }]
+        }
+      })
+    })
   }
 }
 </script>
@@ -117,6 +173,16 @@ export default {
   .charts {
     width: 100%;
     display: flex;
+
+    .video-statistic, .camera-statistic {
+      width: 50%;
+
+      h2 { text-align: center; }
+    }
+
+    .camera-statistic > .chart {
+      border-left: #dedded 1px solid;
+    }
   }
 }
 </style>
