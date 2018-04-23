@@ -2,10 +2,10 @@
   <div class="search-page">
     <div class="sidebar">
       <div class="sidebar-header">
-        <router-link to="/" class="ui big icon text button">
+        <button class="ui big icon text button" @click="back">
           <i class="angle double left icon"></i>
-          Back
-        </router-link>
+          Back to {{ backButtonLabel }}
+        </button>
       </div>
       <div class="sidebar-content">
         <search-box mode="sidebar"></search-box>
@@ -15,7 +15,7 @@
       <div class="ui text loader">Searching...</div>
     </div>
     <div class="content">
-      <div class="options" v-if="results.length > 0">
+      <div class="options" v-if="results.length > 0 && !videoDetailsMode">
         <div class="ui big green label">
           <i class="video icon"></i>
           {{ results.length }} search result(s) found!
@@ -23,7 +23,8 @@
         <layout-mode-switch></layout-mode-switch>
       </div>
       <div class="results">
-        <search-results :results="results"></search-results>
+        <search-results :results="results" v-if="!videoDetailsMode"></search-results>
+        <video-details :video="video" v-else></video-details>
       </div>
     </div>
   </div>
@@ -33,23 +34,46 @@
 import SearchBox from '@/components/SearchBox'
 import LayoutModeSwitch from '@/components/LayoutModeSwitch'
 import SearchResults from '@/components/SearchResults'
+import VideoDetails from '@/components/VideoDetails'
 
 export default {
   name: 'SearchPage',
-  components: { LayoutModeSwitch, SearchBox, SearchResults },
+  components: { LayoutModeSwitch, SearchBox, SearchResults, VideoDetails },
   data () {
     return {
       isLoading: false,
-      results: []
+      results: [],
+      video: ''
     }
   },
   created () {
     this.$bus.$on('search-results', (results) => {
+      this.video = ''
       setTimeout(() => {
         this.isLoading = false
         this.results = results
       }, 1000)
     })
+    this.$bus.$on('search-details', (video) => {
+      this.video = video
+    })
+  },
+  computed: {
+    videoDetailsMode () {
+      return (this.video !== '')
+    },
+    backButtonLabel () {
+      return (this.videoDetailsMode) ? 'search results' : 'home page'
+    }
+  },
+  methods: {
+    back () {
+      if (this.videoDetailsMode) {
+        this.video = ''
+      } else {
+        this.$router.push('/')
+      }
+    }
   }
 }
 </script>
@@ -93,6 +117,7 @@ $sidebar: #197bbd;
     }
 
     .results {
+      padding: 15px;
       height: 100%;
       overflow-y: auto;
     }
