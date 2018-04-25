@@ -18,24 +18,24 @@
           </option>
         </select>
       </div>
-      <div class="field">
+      <div class="required field">
         <label>Event Classification</label>
-        <select class="ui dropdown" name="eventClassification" v-model="query.eventClassification">
+        <select class="ui dropdown" name="eventClassification" v-model="query.eventClassification" required>
           <option value="normal">Normal</option>
           <option value="abnormal">Abnormal</option>
         </select>
       </div>
-      <div class="field">
+      <div class="required field">
         <label>Crowd Density</label>
-        <select class="ui dropdown" name="crowdDensity" v-model="query.crowdDensity">
+        <select class="ui dropdown" name="crowdDensity" v-model="query.crowdDensity" required>
           <option value="notCrowded">Not Crowded</option>
           <option value="crowded">Crowded</option>
           <option value="veryCrowded">Very Crowded</option>
         </select>
       </div>
-      <div class="field">
+      <div class="required field">
         <label>Crowd Movement</label>
-        <select class="ui dropdown" name="crowdMovement" v-model="query.crowdMovement">
+        <select class="ui dropdown" name="crowdMovement" v-model="query.crowdMovement" required>
           <option value="walking">Walking</option>
           <option value="running">Running</option>
           <option value="stationary">Stationary</option>
@@ -111,8 +111,6 @@ export default {
     $('.ui.dropdown').dropdown({ duration: 100 })
     $('.ui.form').form({
       fields: {
-        cameraNames: 'minCount[1]',
-        datasets: 'minCount[1]',
         eventClassification: 'empty',
         crowdDensity: 'empty',
         crowdMovement: 'empty'
