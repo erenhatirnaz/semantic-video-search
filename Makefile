@@ -1,5 +1,7 @@
 FUSEKI = "/home/erenhatirnaz/tools/apache-jena-fuseki/fuseki"
-port = 8000
+
+WEB_APP_DIR = "dist/"
+WEB_APP_PORT = 8080
 
 STATUS = $(shell $(FUSEKI) status)
 
@@ -26,6 +28,6 @@ ifneq ("$(STATUS)", " * Fuseki is not running")
 	$(FUSEKI) stop
 endif
 
-start-server:
-	cd dist/ && python -m SimpleHTTPServer $(port)
+start-web-app: start-fuseki
+	cd $(WEB_APP_DIR) && python -m SimpleHTTPServer $(WEB_APP_PORT)
 
