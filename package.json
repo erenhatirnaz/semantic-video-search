@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "node build/dev-server.js",
-    "start": "yarn run dev",
+    "start": "node build/dev-server.js",
     "build": "node build/build.js",
     "lint": "eslint --ext .js,.vue src",
     "unit": "cross-env BABEL_ENV=test karma start test/unit/karma.conf.js --single-run",
